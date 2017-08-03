@@ -3,8 +3,8 @@ package com.oney.WebRTCModule;
 import android.util.Log;
 
 import org.webrtc.EglBase;
-import org.webrtc.EglBase10;
-import org.webrtc.EglBase14;
+// import org.webrtc.EglBase10;
+// import org.webrtc.EglBase14;
 
 public class EglUtils {
     /**
@@ -29,28 +29,33 @@ public class EglUtils {
             int[] configAttributes = EglBase.CONFIG_PLAIN;
             RuntimeException cause = null;
 
-            try {
-                if (EglBase14.isEGL14Supported()) {
-                    eglBase
-                        = new EglBase14(
-                                /* sharedContext */ null,
-                                configAttributes);
-                }
-            } catch (RuntimeException ex) {
-                // Fall back to EglBase10.
-                cause = ex;
-            }
+            // try {
+            //     if (EglBase14.isEGL14Supported()) {
+            //         eglBase
+            //             = new EglBase14(
+            //                     /* sharedContext */ null,
+            //                     configAttributes);
+            //     }
+            // } catch (RuntimeException ex) {
+            //     // Fall back to EglBase10.
+            //     cause = ex;
+            // }
 
-            if (eglBase == null) {
-                try {
-                    eglBase
-                        = new EglBase10(
-                                /* sharedContext */ null,
-                                configAttributes);
-                } catch (RuntimeException ex) {
-                    // Neither EglBase14, nor EglBase10 succeeded to initialize.
-                    cause = ex;
-                }
+            // if (eglBase == null) {
+            //     try {
+            //         eglBase
+            //             = new EglBase10(
+            //                     /* sharedContext */ null,
+            //                     configAttributes);
+            //     } catch (RuntimeException ex) {
+            //         // Neither EglBase14, nor EglBase10 succeeded to initialize.
+            //         cause = ex;
+            //     }
+            // }
+            try {
+                eglBase = EglBase.create(null, configAttributes);
+            } catch (RuntimeException ex) {
+                cause = ex;
             }
 
             if (cause != null) {
