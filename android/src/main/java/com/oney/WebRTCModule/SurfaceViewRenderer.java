@@ -527,7 +527,7 @@ public class SurfaceViewRenderer extends SurfaceView
       }
       // yuvUploader.uploadYuvData(
       //     yuvTextures, frame.width, frame.height, frame.yuvStrides, frame.yuvPlanes);
-      yuvUploader.uploadYuvData(
+      yuvTextures = yuvUploader.uploadYuvData(
           frame.width, frame.height, frame.yuvStrides, frame.yuvPlanes);
       drawer.drawYuv(yuvTextures, texMatrix, frame.rotatedWidth(), frame.rotatedHeight(),
           0, 0, surfaceSize.x, surfaceSize.y);
