@@ -166,3 +166,10 @@ Use [react-native-incall-manager](https://github.com/zxcpoiu/react-native-incall
 ## Sponsorship
 This repository doesn't have a plan to get sponsorship.(This can be discussed afterwards by collaborators). If you would like to pay bounty to fix some bugs or get some features, be free to open a issue that adds `[BOUNTY]` category in title. Add other bounty website link like [this](https://www.bountysource.com) will be better.
 
+## install this fork form git
+
+npm install https://github.com/jjunk1989/react-native-webrtc --save
+
+## build webrtc
+
+[build webrtc](./Documentation/BuildingWebRTC.md)
