@@ -168,7 +168,7 @@ This repository doesn't have a plan to get sponsorship.(This can be discussed af
 
 ## install this fork form git
 
-npm install https://github.com/jjunk1989/react-native-webrtc --save
+npm install git+https://github.com/jjunk1989/react-native-webrtc.git --save
 
 ## build webrtc
 
