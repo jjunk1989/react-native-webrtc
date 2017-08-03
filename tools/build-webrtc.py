@@ -107,7 +107,7 @@ def build(target_dir, platform, debug):
     os.chdir(webrtc_dir)
 
     # Run glient
-    sh('gclient sync', env)
+    # sh('gclient sync', env)
 
     # Cleanup old build
     rmr('out')
