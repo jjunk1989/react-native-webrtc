@@ -8,10 +8,15 @@ import org.webrtc.EglBase;
 
 public class EglUtils {
     /**
+     *  remove webrtc eglbase10/eglbase14  from webrtc 61.
+     *  add force opengl 4xmsaa config
+     *  more details https://developer.android.com/reference/javax/microedition/khronos/egl/EGL10.html#EGL_LEVEL
+     *
+     * */
+    /**
      * The root {@link EglBase} instance shared by the entire application for
      * the sake of reducing the utilization of system resources (such as EGL
-     * contexts). It selects between {@link EglBase10} and {@link EglBase14}
-     * by performing a runtime check.
+     * contexts).
      */
     private static EglBase rootEglBase;
 
@@ -26,7 +31,24 @@ public class EglUtils {
             // "Unable to find any matching EGL config". Fall back to EglBase10
             // in the described scenario.
             EglBase eglBase = null;
-            int[] configAttributes = EglBase.CONFIG_PLAIN;
+//            int[] configAttributes = EglBase.CONFIG_PLAIN;
+            int [] configAttributes = {
+                    // 12324, 8,             // EGL_RED_SIZE
+                    // 12323, 8,             // EGL_GREEN_SIZE
+                    // 12322, 8,             // EGL_BLUE_SIZE
+                    // 12352, 4,             // EGL_RENDERABLE_TYPE
+                    // 12344                 // EGL_NONE
+                    12329, 0,                // EGL_LEVEL
+                    12352, 4,                // EGL_RENDERABLE_TYPE
+                    12351, 12430,            // EGL_COLOR_BUFFER_TYPE EGL_RGB_BUFFER
+                    12324, 8,                // EGL_RED_SIZE
+                    12323, 8,                // EGL_GREEN_SIZE
+                    12322, 8,                // EGL_BLUE_SIZE
+                    12325, 16,               // EGL_DEPTH_SIZE
+                    12338, 1,                // EGL_SAMPLE_BUFFERS
+                    12337, 4,                // EGL_SAMPLES  在这里修改MSAA的倍数，4就是4xMSAA，再往上开程序可能会崩
+                    12344
+            };
             RuntimeException cause = null;
 
             // try {
