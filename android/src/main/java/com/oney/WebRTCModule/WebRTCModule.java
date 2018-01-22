@@ -5,6 +5,7 @@ import android.hardware.Camera.CameraInfo;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.util.SparseArray;
+import android.media.AudioAttributes;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Callback;
@@ -28,6 +29,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.webrtc.*;
+import org.webrtc.voiceengine.WebRtcAudioTrack;
 
 public class WebRTCModule extends ReactContextBaseJavaModule {
     static final String TAG = WebRTCModule.class.getCanonicalName();
@@ -53,6 +55,7 @@ public class WebRTCModule extends ReactContextBaseJavaModule {
         mMediaStreamTracks = new HashMap<String, MediaStreamTrack>();
 
         PeerConnectionFactory.initializeAndroidGlobals(reactContext, true, true, true);
+        WebRtcAudioTrack.setAudioTrackUsageAttribute(AudioAttributes.USAGE_MEDIA);
 
         mFactory = new PeerConnectionFactory(null);
         // Initialize EGL contexts required for HW acceleration.
