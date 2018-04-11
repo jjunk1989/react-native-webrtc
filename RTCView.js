@@ -4,6 +4,7 @@ import {
   DeviceEventEmitter,
   NativeModules,
   requireNativeComponent,
+  ViewPropTypes,
 } from 'react-native';
 import {PropTypes} from 'react';
 
@@ -18,7 +19,7 @@ const RTCView = {
      * mirrored during rendering. Commonly, applications choose to mirror the
      * user-facing camera.
      */
-    mirror: PropTypes.bool,
+    mirror: ViewPropTypes.bool,
 
     /**
      * In the fashion of
@@ -26,9 +27,9 @@ const RTCView = {
      * and https://www.w3.org/TR/html5/rendering.html#video-object-fit,
      * resembles the CSS style object-fit.
      */
-    objectFit: PropTypes.oneOf(['contain', 'cover']),
+    objectFit: ViewPropTypes.string,
 
-    streamURL: PropTypes.string,
+    streamURL: ViewPropTypes.string,
 
     /**
      * Similarly to the CSS property z-index, specifies the z-order of this
@@ -53,7 +54,7 @@ const RTCView = {
      * remote video(s) which appear in the background, and 1 for the local
      * video(s) which appear above the remote video(s).
      */
-    zOrder: PropTypes.number
+    zOrder: ViewPropTypes.number
   },
 };
 
